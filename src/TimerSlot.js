@@ -9,11 +9,11 @@ export default function TimerSlot({timer, updateTimer}) {
   }
   return (
     <form className="timer">
-          <input className={`${timer.isActive ? 'input_active' : ''}`}
+          {/* <input className={`${timer.isActive ? 'input_active' : ''}`}
           type="number" value={time} 
           onChange={({target})=>setTime(target.value)}
           onBlur={handleBlur}
-          />
+          /> */}
           <input className={`${timer.isActive ? 'input_active' : ''}`}
           type="text" value={text} 
           onChange={({target})=>setText(target.value)}

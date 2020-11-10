@@ -81,7 +81,7 @@ button {
   background: #555;
   color: #999;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 20px;
   padding: 10px 20px;
 }
 
@@ -92,17 +92,19 @@ button {
 
 .buttons button {
   font-size: 21px;
-  padding: 25px 45px;
+  padding: 25px 0;
 }
 
 .start-button {
   background: #2f855a;
   color: #aedac4;
+  width: 150px;
 }
 
 .stop-button {
   background: #c53030;
   color: #f0c0c0;
+  width: 150px;
 }
 
 .buttons p {

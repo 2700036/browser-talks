@@ -10,6 +10,7 @@ export default function App() {
     {time: 1, text: 'Привет!', isActive: false},
     {time: 3, text: 'Ты можешь написать что-нибудь', isActive: false},
     {time: 6, text: 'И я просто скажу это', isActive: false},
+    // {time: 9, text: 'Слева - секунда на которой будет произнесена фраза', isActive: false},
   ]);
   const { speak, speaking, supported, voices } = useSpeechSynthesis();
   const {
@@ -21,8 +22,11 @@ export default function App() {
     {time, text, isActive}, ...timers.slice(i+1,)])
   }
   const addTimerSlot = () => {
-    setTimers([...timers, {time: Math.floor(timers[timers.length-1].time 
-      +timers[timers.length-1].text.length/6), text: 'Cообщение', isActive: false}])
+    setTimers([...timers, {time: Math.floor(timers[timers.length-1]?.time 
+      + (timers[timers.length-1]?.text.length>25
+        ?timers[timers.length-1]?.text.length/10 
+        :timers[timers.length-1]?.text.length/6)
+        ) || 1, text: 'Cообщение', isActive: false}])
   }
 
   const resetTalk = () => {
@@ -45,7 +49,8 @@ export default function App() {
       setTimers(newTimers);
       speak({text: foundTimer.text, voice: voices[18]})
     }
-    if (seconds > timers[timers.length-1].time+1) resetTalk();
+    console.log(seconds, timers[timers.length-1]?.time+1)
+    if (seconds > timers[timers.length-1]?.time+1) resetTalk();
   }, [seconds])
 
 
@@ -66,19 +71,19 @@ export default function App() {
         />)
         }
 
-        <button className="add-button" onClick={addTimerSlot}>Add</button>
+        <button className="add-button" onClick={addTimerSlot}>Добавить реплику +</button>
       </div>
 
-      {/* seconds */}
-      <h2>{seconds}</h2>
+     
+      {/* <h2>{seconds}</h2> */}
 
-      {/* buttons */}
+      
       <div className="buttons">
         {!isRunning && <button className="start-button" onClick={start}>
-          Start
+          Говори!
           </button>}
         {isRunning && <button className="stop-button" onClick={resetTalk}>
-          Stop
+          Прекрати
           </button>}
       </div> 
       </>}
