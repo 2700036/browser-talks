@@ -48,20 +48,20 @@ export default function App() {
 
   const startTalk = () => {
     if(currentPhrase.id == 0 ){
-      speak({text: currentPhrase.text, voice: voices[18]})
+      speak({text: currentPhrase.text})
       setCurrentPhrase(timers[0])
       start()      
       return
     }
     if(currentPhrase.text.length < 1){
-      speak({text: randomPrase(), voice: voices[18]})
+      speak({text: randomPrase()})
       setNextTimer ()
       return
     }
     if(speaking)return;
     start()            
     setTimeout(() => {       
-      speak({text: currentPhrase.text, voice: voices[18]})
+      speak({text: currentPhrase.text})
     }, 700)
   
     setNextTimer ()
